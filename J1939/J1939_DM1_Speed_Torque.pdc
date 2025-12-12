@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ProemionDataConfiguration.xsl?>
+<DataConfig xmlns="http://xml.proemion.com/ProemionDataConfiguration/2012/07"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	customerVersion="0.0.1" keyPrefix="" uuid="32696f88-0037-44d1-9b8b-dd13b6ddb6b9"
+	xsi:schemaLocation="http://xml.proemion.com/ProemionDataConfiguration/2012/07 https://xml.proemion.com/ProemionDataConfiguration/2012/07/ProemionDataConfiguration.xsd">
+	<!-- Names -->
+	<Name xsi:type="MessageDefinition">
+		<Label lang="de" value="J1939_DM1_Speed_Torque" />
+		<Label lang="en" value="J1939_DM1_Speed_Torque" />
+	</Name>
+	<!-- Descriptions -->
+	<Description xsi:type="MessageDefinition">
+		<Label lang="de" value="Example of pasring J1939 DM1, Speed and torque % signals" />
+		<Label lang="en" value="Example of pasring J1939 DM1, Speed and torque % signals" />
+	</Description>
+	<!-- Global Dictionary -->
+	<GlobalDictionary>
+		<Message key="label.value.custom.machine.MSGID_1_1">
+			<Label lang="en" value="Can message ID 1 RAW 32 byte 1" />
+			<Label lang="de" value="Can message ID 1 RAW 32 byte 1" />
+		</Message>
+	</GlobalDictionary>
+	<!-- Transformer -->
+	<Transformers>
+		<Transformer key="transformer.1.0">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0_125.0">
+			<formula xsi:type="LinearFormula">
+				<scale>0.125</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0.40.1">
+			<formula xsi:type="LinearFormula">
+				<scale>0.40</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0_03125.-273">
+			<formula xsi:type="LinearFormula">
+				<scale>0.03125</scale>
+				<offset>-273</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.1.-40">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>-40</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.1.-50">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>-50</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0.04.1">
+			<formula xsi:type="LinearFormula">
+				<scale>0.04</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0.05.0">
+			<formula xsi:type="LinearFormula">
+				<scale>0.05</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.10.0">
+			<formula xsi:type="LinearFormula">
+				<scale>10</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.1.100">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>100</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.1.-100">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>-100</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.0.016.0">
+			<formula xsi:type="LinearFormula">
+				<scale>0.0166666666666666</scale>
+				<offset>0</offset>
+			</formula>
+		</Transformer>
+		<Transformer key="transformer.1.-125">
+			<formula xsi:type="LinearFormula">
+				<scale>1</scale>
+				<offset>-125</offset>
+			</formula>
+		</Transformer>
+	</Transformers>
+	<xi:include href="https://xml.proemion.com/ProemionDataConfiguration/predefinedUnits.xml"
+		parse="xml" xpointer="element(/1)" />
+	<!-- Units -->
+	<J1939>
+		<xi:include
+			href="https://xml.proemion.com/ProemionDataConfiguration/J1939_201603_SpnLabels.xml" />
+	</J1939>
+	<!-- Units -->
+	<Units>
+		<Unit key="custom.unit.time.hours">
+			<symbol xsi:type="MessageDefinition">
+				<Label lang="en" value="hr" />
+				<Label lang="de" value="h" />
+			</symbol>
+			<description xsi:type="MessageDefinition">
+				<Label lang="en" value="hr" />
+				<Label lang="de" value="h" />
+			</description>
+			<storeType xsi:type="NumericValueStoreType" />
+		</Unit>
+		<Unit key="custom.unit.rotation.rpm">
+			<symbol xsi:type="MessageDefinition">
+				<Label lang="en" value="rpm" />
+				<Label lang="de" value="U/min" />
+			</symbol>
+			<description xsi:type="MessageDefinition">
+				<Label lang="en" value="rpm" />
+				<Label lang="de" value="U/min" />
+			</description>
+			<storeType xsi:type="NumericValueStoreType" />
+		</Unit>
+	</Units>
+	<!-- ValueDefinitions -->
+	<ValueDefinitions>
+		<ValueDefinition key="value.common.engine.speed" managedByDataPlatform="true" />
+		<ValueDefinition key="value.common.engine.torque.actual" managedByDataPlatform="true" />
+	</ValueDefinitions>
+	<!-- ParsingDefinition -->
+	<ParsingDefinition>
+		<BinaryStreamDefinition channel="1" src="CAN">
+			<CanMessage canId="0x0CF00400" canIdLength="29" mask="0x1FFFFFFF"
+				protocolStyle="GENERIC">
+				<Values>
+					<IntValue continueOnLastPostion="false" endianness="LITTLE" length="16"
+						signed="false" startPos="24">
+						<valueDefinition ref="value.common.engine.speed" />
+						<transformer ref="transformer.0_125.0" />
+					</IntValue>
+				</Values>
+			</CanMessage>
+			<DM1_DM2Message conversionMode="3" readLampStatus="true" />
+		</BinaryStreamDefinition>
+		<BinaryStreamDefinition channel="2" src="CAN">
+			<CanMessage canId="0x0CF00400" canIdLength="29" mask="0x1FFFFFFF"
+				protocolStyle="GENERIC">
+				<Values>
+					<IntValue continueOnLastPostion="false" endianness="LITTLE" length="8"
+						signed="false" startPos="16">
+						<valueDefinition ref="value.common.engine.torque.actual" />
+						<transformer ref="transformer.1.-125" />
+					</IntValue>
+				</Values>
+			</CanMessage>
+			<DM1_DM2Message conversionMode="3" readLampStatus="true" />
+		</BinaryStreamDefinition>
+	</ParsingDefinition>
+	<!-- ViewDefinitions -->
+	<!-- ActionDefinition -->
+	<!-- AccessPermission -->
+	<!-- Permissions -->
+	<Permissions>
+	</Permissions>
+</DataConfig>
