@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But NOT these file types
+!*.projectarchive
+!*.pcd
+!*.dbc
+!*.md
+
+# Also unignore directories (needed so Git can see files inside them)
+!*/
