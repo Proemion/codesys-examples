@@ -22,3 +22,12 @@ The fbDM1 block listens to the J1939 stack. When a full message arrives (even a 
 
 The fbWriter block takes the raw interface data and converts it into a readable array of J1939.DTC structures. The code loops through the active DTCs and packs them into a byte array (aDM1_Bytes). It then compares this array to the previous cycle. Then it also logs them on change. 
 
+
+### Hanlding of source addresses
+
+The source addresses come directly from the J1939_ECU_Reciever, this can be configured there directly in the General Tab of the Settings where the name "Preferred address" is. 
+Then in the code we basically hard code the the same sources which is then used to log the DTCs.
+
+    Idi_MsgId_SA : DINT := 16#18FECA00;
+
+    
