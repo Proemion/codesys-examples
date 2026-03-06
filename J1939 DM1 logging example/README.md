@@ -7,11 +7,13 @@ This example contains how to read DM1 messages  using the IoDrvj1939 function bl
 ### Hardware Mapping
 Ensure your CODESYS project has the J1939 stack configured:
 
+ * Add a CAN interface with the correct network and baudrate
  * Add a J1939 Manager to your CAN interface.
 
 * Add a Remote ECU under the manager.
 
 * Note the name of the ECU in the device tree (e.g., J1939_ECU_Receiver).
+
 
 ### Implementation
 In the provided code, ensure the itfSourceECU input of the fbDM1 block points to your ECU:
