@@ -3,6 +3,7 @@
 
 # But NOT these file types
 !*.projectarchive
+!*.compiled-library
 !*.pdc
 !*.dbc
 !*.md
