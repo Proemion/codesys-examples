@@ -4,6 +4,7 @@
 # But NOT these file types
 !*.projectarchive
 !*.compiled-library
+!*.library
 !*.pdc
 !*.dbc
 !*.md
