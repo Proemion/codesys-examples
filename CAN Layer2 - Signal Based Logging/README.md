@@ -32,6 +32,22 @@ Refer to CODESYS on how libraries are installed. This might change over time:
 
 ---
 
+## Viewing the Library Documentation
+
+The library's changelog and per-POU documentation (`@brief`, `@param`, `@return`, etc.) are written into the source using CODESYS's standard documentation-comment syntax, so that content ships inside `CANlink_CAN.library` / `CANlink_CAN.compiled-library` automatically — no extra download needed to *have* it.
+
+**If you're using `CANlink_CAN.compiled-library`:** the documentation is already precompiled into it and renders normally in the Library Manager's **Documentation** tab out of the box — no add-on required.
+
+**If you're using the open source `CANlink_CAN.library`:** to see the documentation rendered nicely in the Library Manager (rather than as raw comments in the code editor), you need the **Library Documentation Support** add-on installed in your CODESYS IDE:
+
+1. Open **Tools → CODESYS Store** (or the Installer, depending on your version)
+2. Install **Library Documentation Support**
+3. Reopen the library in the **Library Manager** and select **Documentation**
+
+This is a per-user, PC-side IDE add-on — it is *not* a library dependency and cannot be bundled into the `.library` file or the project archive. Each person who wants the rendered documentation view for the source library needs to install it themselves once, in their own CODESYS installation. If you don't have it installed, you can still read the raw documentation comments directly in the POU declaration headers in the source library.
+
+---
+
 ## Opening the Example
 
 1. **File → Open Project Archive...**
