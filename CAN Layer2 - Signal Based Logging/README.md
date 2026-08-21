@@ -46,6 +46,8 @@ The library's changelog and per-POU documentation (`@brief`, `@param`, `@return`
 
 This is a per-user, PC-side IDE add-on — it is *not* a library dependency and cannot be bundled into the `.library` file or the project archive. Each person who wants the rendered documentation view for the source library needs to install it themselves once, in their own CODESYS installation. If you don't have it installed, you can still read the raw documentation comments directly in the POU declaration headers in the source library.
 
+> **Note:** This example was built and verified with **Library Documentation Support V4.6.0**. Version 4.7.0 may introduce more restrictions — if the documentation doesn't render as expected after updating the add-on, try reverting to V4.6.0.
+
 ---
 
 ## Opening the Example
